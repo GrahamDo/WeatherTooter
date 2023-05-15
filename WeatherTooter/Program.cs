@@ -2,7 +2,7 @@
 {
     internal class Program
     {
-        static void Main(string[] args)
+        private static async Task Main(string[] args)
         {
             try
             {
@@ -13,6 +13,10 @@
                     settings.Save();
                     return;
                 }
+
+                var weatherClient = new WeatherApiClient();
+                var weather = await weatherClient.GetForecast(DateTime.Now.Date, settings.LocationLatitude,
+                    settings.LocationLongitude);
             }
             catch (ApplicationException ex)
             {

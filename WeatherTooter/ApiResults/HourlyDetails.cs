@@ -1,10 +1,17 @@
-﻿using System.Text.Json.Serialization;
+﻿using Newtonsoft.Json;
 
 namespace WeatherTooter.ApiResults;
 
 internal class HourlyDetails
 {
-    [JsonPropertyName("temperature_2m")] public float[] Temperatures { get; set; }
-    [JsonPropertyName("apparent_temperature")] public float[] ApparentTemperatures { get; set; }
-    [JsonPropertyName("precipitation_probability")] public float[] PrecipitatioProbability { get; set; }
+    [JsonProperty("temperature_2m")] public float[] Temperatures { get; set; }
+    [JsonProperty("apparent_temperature")] public float[] ApparentTemperatures { get; set; }
+    [JsonProperty("precipitation_probability")] public float[] PrecipitationProbability { get; set; }
+
+    public HourlyDetails()
+    {
+        Temperatures = Array.Empty<float>();
+        ApparentTemperatures = Array.Empty<float>();
+        PrecipitationProbability = Array.Empty<float>();
+    }
 }

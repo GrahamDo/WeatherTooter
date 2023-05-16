@@ -15,8 +15,8 @@ namespace WeatherTooter
             var cultureInvariantLongitude = locationLongitude.ToString("#0.00", CultureInfo.InvariantCulture);
             var cultureInvariantLatitude = locationLatitude.ToString("#0.00", CultureInfo.InvariantCulture);
             var queryString = $"v1/forecast?" +
-                              $"latitude={cultureInvariantLongitude}&" +
-                              $"longitude={cultureInvariantLatitude}&" +
+                              $"latitude={cultureInvariantLatitude}&" +
+                              $"longitude={cultureInvariantLongitude}&" +
                               "current_weather=true&" +
                               $"start_date={today:yyyy-MM-dd}&" +
                               $"end_date={tomorrow:yyyy-MM-dd}&" +

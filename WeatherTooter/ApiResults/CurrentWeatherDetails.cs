@@ -1,8 +1,9 @@
-﻿using System.Text;
+﻿using System.Runtime.CompilerServices;
+using System.Text;
 
 namespace WeatherTooter.ApiResults;
 
-internal class CurrentWeatherDetails
+public class CurrentWeatherDetails
 {
     public float Temperature { get; set; }
     public byte WeatherCode { get; set; }

@@ -20,6 +20,10 @@
                 var conditions = weather.CurrentWeather.GetCurrentConditions();
                 var apparentTemperature = weather.Hourly.ApparentTemperatures[DateTime.Now.Hour];
                 var forecast = MinMaxForecast.GetFromApiResults(weather, settings.HoursToForecast);
+                var template = new TootTemplate();
+                var tootText = template.GetTootText(conditions, settings.LocationName,
+                    weather.CurrentWeather.Temperature, apparentTemperature, settings.HoursToForecast,
+                    forecast.MinMaxDescriptor, forecast.MinMaxValue, forecast.MaxPrecipitationChance);
             }
             catch (ApplicationException ex)
             {

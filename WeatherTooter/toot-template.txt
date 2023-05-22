@@ -1,5 +1,5 @@
 ﻿It is currently {Conditions} in {Location}, with a temperature of {Temperature} (Feels like {ApparentTemperature}).
 
-Over the next {TimePeriod}, the forecast is for a {MinMax} of {ForecastTemperature}, with {PrecipitationChance} of precipitation.
+Over the next {TimePeriod}, the forecast is for a {MinMax} of {ForecastTemperature}, with a {PrecipitationChance} chance of precipitation.
 
 #{LocationNoSpaces} #Weather

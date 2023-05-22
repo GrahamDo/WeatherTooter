@@ -32,10 +32,12 @@ public class CurrentWeatherDetails
         // Type of precipitation
         if (WeatherCode is > 50 and < 60)
             result.Append("drizzling");
-        else if (WeatherCode is > 60 and < 70 || WeatherCode is >= 80 and <= 82 || WeatherCode >= 95)
+        else if (WeatherCode is > 60 and < 70 || WeatherCode is 80 or 81 or 82 or 95)
             result.Append("raining");
         else if (WeatherCode is > 70 and < 80 || WeatherCode == 85 || WeatherCode == 86)
             result.Append("snowing");
+        if (WeatherCode is 96 or 99)
+            result.Append("hailing");
 
         // Intensity of precipitation
         if (WeatherCode is 51 or 56 or 61 or 66 or 71)
@@ -44,11 +46,11 @@ public class CurrentWeatherDetails
             result.Append(" with grains");
         else if (WeatherCode is 80 or 85)
             result.Append(" with light");
-        else if (WeatherCode is 81 or 95 or 96 or 99)
+        else if (WeatherCode is 81 or 95 )
             result.Append(" with");
         else if (WeatherCode is 82 or 86)
             result.Append(" with heavy");
-        else if (WeatherCode is 55 or 57 or 65 or 67 or 75)
+        else if (WeatherCode is 55 or 57 or 65 or 67 or 75 or 99)
             result.Append(" heavily");
         
         if (WeatherCode is 56 or 57 or 66 or 67)
@@ -57,14 +59,8 @@ public class CurrentWeatherDetails
         // Showers / Thunderstorms
         if (WeatherCode is 80 or 81 or 82 or 86 or 85)
             result.Append(" showers");
-        else if (WeatherCode is 95 or 96 or 99)
-        {
+        else if (WeatherCode is 95)
             result.Append(" thunderstorms");
-            if (WeatherCode is 96)
-                result.Append(" and hail");
-            else if (WeatherCode is 99)
-                result.Append(" and heavy hail");
-        }
 
         return result.Length > 0 ? 
             result.ToString() : 

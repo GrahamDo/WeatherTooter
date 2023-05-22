@@ -32,8 +32,8 @@ namespace WeatherTooter.Tests
         [TestCase(85, "snowing with light showers")]
         [TestCase(86, "snowing with heavy showers")]
         [TestCase(95, "raining with thunderstorms")]
-        [TestCase(96, "raining with thunderstorms and hail")]
-        [TestCase(99, "raining with thunderstorms and heavy hail")]
+        [TestCase(96, "hailing")]
+        [TestCase(99, "hailing heavily")]
         public void TestCurrentConditions(byte weatherCode, string currentConditions)
         {
             var sut = new CurrentWeatherDetails { WeatherCode = weatherCode };

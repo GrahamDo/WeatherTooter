@@ -40,6 +40,8 @@ public class CurrentWeatherDetails
         // Intensity of precipitation
         if (WeatherCode is 51 or 56 or 61 or 66 or 71)
             result.Append(" slightly");
+        else if (WeatherCode is 77)
+            result.Append(" with grains");
         else if (WeatherCode is 80 or 85)
             result.Append(" with light");
         else if (WeatherCode is 81 or 95)

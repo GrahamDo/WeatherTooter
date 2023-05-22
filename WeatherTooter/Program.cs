@@ -24,6 +24,9 @@
                 var tootText = template.GetTootText(conditions, settings.LocationName,
                     weather.CurrentWeather.Temperature, apparentTemperature, settings.HoursToForecast,
                     forecast.MinMaxDescriptor, forecast.MinMaxValue, forecast.MaxPrecipitationChance);
+
+                var mastodon = new MastodonApiClient();
+                await mastodon.Post(settings.MastodonInstanceUrl, settings.MastodonToken, tootText);
             }
             catch (ApplicationException ex)
             {

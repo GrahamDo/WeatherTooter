@@ -44,7 +44,7 @@ public class CurrentWeatherDetails
             result.Append(" with grains");
         else if (WeatherCode is 80 or 85)
             result.Append(" with light");
-        else if (WeatherCode is 81 or 95)
+        else if (WeatherCode is 81 or 95 or 96 or 99)
             result.Append(" with");
         else if (WeatherCode is 82 or 86)
             result.Append(" with heavy");

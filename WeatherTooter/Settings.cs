@@ -9,8 +9,6 @@ namespace WeatherTooter
         public float LocationLatitude { get; set; }
         public float LocationLongitude { get; set; }
         public string LocationName { get; set; }
-        [JsonIgnore]
-        public string LocationNameNoSpaces => LocationName.Replace(" ", "");
         public byte HoursToForecast { get; set; }
         public string MastodonToken { get; set; }
         public string MastodonInstanceUrl { get; set; }

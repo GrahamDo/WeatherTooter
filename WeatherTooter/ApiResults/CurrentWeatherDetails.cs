@@ -46,9 +46,10 @@ public class CurrentWeatherDetails
             result.Append(" with");
         else if (WeatherCode is 82 or 86)
             result.Append(" with heavy");
-        else if (WeatherCode is 55 or 57)
+        else if (WeatherCode is 55 or 57 or 67)
             result.Append(" heavily");
-        else if (WeatherCode is 56 or 57)
+        
+        if (WeatherCode is 56 or 57 or 66 or 67)
             result.Append(" (freezing)");
 
         // Showers / Thunderstorms

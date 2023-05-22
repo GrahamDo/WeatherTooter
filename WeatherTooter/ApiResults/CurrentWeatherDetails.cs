@@ -46,7 +46,7 @@ public class CurrentWeatherDetails
             result.Append(" with");
         else if (WeatherCode is 82 or 86)
             result.Append(" with heavy");
-        else if (WeatherCode is 55 or 57 or 67)
+        else if (WeatherCode is 55 or 57 or 65 or 67 or 75)
             result.Append(" heavily");
         
         if (WeatherCode is 56 or 57 or 66 or 67)

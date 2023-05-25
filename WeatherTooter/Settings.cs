@@ -65,7 +65,7 @@ namespace WeatherTooter
                         throw new ApplicationException($"Invalid setting: {setting}");
                 }
             }
-            catch (FormatException ex)
+            catch (FormatException)
             {
                 throw new ApplicationException($"{value} is an invalid value for {setting}");
             }

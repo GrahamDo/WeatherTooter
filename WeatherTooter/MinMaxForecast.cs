@@ -19,7 +19,7 @@ internal class MinMaxForecast
         var minimumTemperature = float.MinValue;
         var maximumTemperature = float.MaxValue;
 
-        var startIndex = DateTime.Now.Hour;
+        var startIndex = DateTime.Now.Hour + 1;
         var endIndex = startIndex + hoursToForecast;
 
         var result = new MinMaxForecast();

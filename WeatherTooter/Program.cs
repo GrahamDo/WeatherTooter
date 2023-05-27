@@ -18,7 +18,7 @@
                 var weather = await weatherClient.GetForecast(DateTime.Now.Date, settings.LocationLatitude,
                     settings.LocationLongitude, settings.IanaTimeZoneName);
                 var conditions = weather.CurrentWeather.GetCurrentConditions();
-                var apparentTemperature = weather.Hourly.ApparentTemperatures[DateTime.Now.Hour];
+                var apparentTemperature = weather.Hourly.ApparentTemperatures[weather.CurrentWeather.LocalTime.Hour];
                 var forecast = MinMaxForecast.GetFromApiResults(weather, settings.HoursToForecast);
                 var template = new TootTemplate();
                 var tootText = template.GetTootText(conditions, settings.LocationName,

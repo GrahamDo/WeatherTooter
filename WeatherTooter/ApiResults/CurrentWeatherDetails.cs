@@ -1,5 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
 using System.Text;
+using Newtonsoft.Json;
 
 namespace WeatherTooter.ApiResults;
 
@@ -7,6 +8,7 @@ public class CurrentWeatherDetails
 {
     public float Temperature { get; set; }
     public byte WeatherCode { get; set; }
+    [JsonProperty("time")] public DateTime LocalTime { get; set; }
 
     public string GetCurrentConditions()
     {

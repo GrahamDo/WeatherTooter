@@ -10,8 +10,6 @@ In order to use this bot, you'll need a Mastodon Access Token with permission to
 
 Pull the code and build it for your preferred platform. I've tested it on both Windows x64 and Ubuntu 23.04 x64.
 
-Edit the <code>toot-template.txt</code> file and make sure you're happy with what the toot will look like.
-
 Then open a terminal and run the following for each setting to configure everything:
 
 <code>WeatherTooter --set &lt;setting&gt; &lt;value&gt;</code>
@@ -27,6 +25,12 @@ Then open a terminal and run the following for each setting to configure everyth
 
 ### Running
 
-You're done. Execute <code>WeatherTooter</code> without any arguments.
+Once everything is set up, run:
+
+<code>WeatherTooter --fake</code>
+
+This will connect to the Weather API and print what it would toot to the console. If you're not happy with that, edit the <code>toot-template.txt</code>, which should be self-explanatory.
+
+Once you're happy, run <code>WeatherTooter</code> without any arguments.
 
 Then create a cron job or Windows Scheduled Task to do that as often as you like, and you're good to go! :-)

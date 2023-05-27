@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "WeatherTooter": {
+      "commandName": "Project",
+      "commandLineArgs": "--fake"
+    }
+  }
+}

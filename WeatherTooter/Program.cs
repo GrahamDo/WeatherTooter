@@ -16,7 +16,7 @@
 
                 var weatherClient = new WeatherApiClient();
                 var weather = await weatherClient.GetForecast(DateTime.Now.Date, settings.LocationLatitude,
-                    settings.LocationLongitude);
+                    settings.LocationLongitude, settings.IanaTimeZoneName);
                 var conditions = weather.CurrentWeather.GetCurrentConditions();
                 var apparentTemperature = weather.Hourly.ApparentTemperatures[DateTime.Now.Hour];
                 var forecast = MinMaxForecast.GetFromApiResults(weather, settings.HoursToForecast);

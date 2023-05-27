@@ -8,7 +8,7 @@ namespace WeatherTooter
     internal class WeatherApiClient
     {
         public async Task<ForecastApiResults> GetForecast(DateTime today, float locationLatitude,
-            float locationLongitude)
+            float locationLongitude, string ianaTimeZoneName)
         {
             var tomorrow = today.AddDays(1);
             var restClient = new RestClient("https://api.open-meteo.com/");
@@ -18,6 +18,7 @@ namespace WeatherTooter
                               $"latitude={cultureInvariantLatitude}&" +
                               $"longitude={cultureInvariantLongitude}&" +
                               "current_weather=true&" +
+                              $"timezone={ianaTimeZoneName}&" +
                               $"start_date={today:yyyy-MM-dd}&" +
                               $"end_date={tomorrow:yyyy-MM-dd}&" +
                               "hourly=temperature_2m,apparent_temperature," +

@@ -25,8 +25,18 @@
                     weather.CurrentWeather.Temperature, apparentTemperature, settings.HoursToForecast,
                     forecast.MinMaxDescriptor, forecast.MinMaxValue, forecast.MaxPrecipitationChance);
 
-                var mastodon = new MastodonApiClient();
-                await mastodon.Post(settings.MastodonInstanceUrl, settings.MastodonToken, tootText);
+                if (args.Length == 1 && args[0].ToLower() == "--fake")
+                {
+                    Console.WriteLine("Not posting to Mastodon. --fake detected.");
+                    Console.WriteLine("The following WOULD be posted:");
+                    Console.WriteLine();
+                    Console.WriteLine(tootText);
+                }
+                else
+                {
+                    var mastodon = new MastodonApiClient();
+                    await mastodon.Post(settings.MastodonInstanceUrl, settings.MastodonToken, tootText);
+                }
             }
             catch (ApplicationException ex)
             {

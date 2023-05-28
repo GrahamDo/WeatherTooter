@@ -16,6 +16,8 @@ namespace WeatherTooter
 
         public Settings()
         {
+            LocationLatitude = float.MinValue;
+            LocationLongitude = float.MinValue;
             LocationName = string.Empty;
             IanaTimeZoneName = string.Empty;
             MastodonToken = string.Empty;

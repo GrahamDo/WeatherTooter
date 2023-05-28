@@ -11,6 +11,10 @@ namespace WeatherTooter
         public async Task<ForecastApiResults> GetForecast(DateTime today, float locationLatitude,
             float locationLongitude, string ianaTimeZoneName)
         {
+            if (locationLatitude == float.MinValue)
+                throw new ApplicationException("Missing location latitude");
+            if (locationLongitude == float.MinValue)
+                throw new ApplicationException("Missing location longitude");
             if (string.IsNullOrEmpty(ianaTimeZoneName))
                 throw new ApplicationException("Missing time zone name");
 

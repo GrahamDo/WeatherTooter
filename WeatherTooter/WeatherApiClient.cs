@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using System.Net;
 using Newtonsoft.Json;
 using RestSharp;
 using WeatherTooter.ApiResults;
@@ -28,15 +29,25 @@ namespace WeatherTooter
                               "precipitation_probability";
 
             var request = new RestRequest(queryString);
-            var response = await restClient.GetAsync(request);
-            if (response?.Content == null)
-                throw new ApplicationException("Empty response from Weather API Client");
+            try
+            {
+                var response = await restClient.GetAsync(request);
+                if (response?.Content == null)
+                    throw new ApplicationException("Empty response from Weather API Client");
 
-            var results = JsonConvert.DeserializeObject<ForecastApiResults>(response.Content);
-            if (results == null)
-                throw new ApplicationException("Can't deserialise Weather Content");
+                var results = JsonConvert.DeserializeObject<ForecastApiResults>(response.Content);
+                if (results == null)
+                    throw new ApplicationException("Can't deserialise Weather Content");
 
-            return results;
+                return results;
+            }
+            catch (HttpRequestException ex)
+            {
+                if (ex.StatusCode == HttpStatusCode.BadRequest)
+                    throw new ApplicationException("Error contacting Weather API. Could be an invalid time zone name");
+
+                throw;
+            }
         }
     }
 }

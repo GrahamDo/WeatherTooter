@@ -10,6 +10,9 @@ namespace WeatherTooter
         public async Task<ForecastApiResults> GetForecast(DateTime today, float locationLatitude,
             float locationLongitude, string ianaTimeZoneName)
         {
+            if (string.IsNullOrEmpty(ianaTimeZoneName))
+                throw new ApplicationException("Missing time zone name");
+
             var tomorrow = today.AddDays(1);
             var restClient = new RestClient("https://api.open-meteo.com/");
             var cultureInvariantLongitude = locationLongitude.ToString("#0.00", CultureInfo.InvariantCulture);

@@ -19,7 +19,7 @@ Then open a terminal and run the following for each setting to configure everyth
 * LocationLatitude - The latitude cordinate of the location to get weather data for (e.g. <code>-26.2278</code>)
 * LocationLongitude - The longitude cordinate of the location to get weather data for (e.g. <code>28.1724</code>)
 * LocationName - Descriptive name of the location (e.g. <code>Johannesburg</code>)
-* IanaTimeZoneName - The IANA name of the time zone to get results in. The default is the current machine's time zone. For more information, see https://en.wikipedia.org/wiki/List_of_tz_database_time_zones (e.g. <code>Africa/Johannesburg</code>)
+* IanaTimeZoneName - The IANA name of the time zone to get results in. For more information, see https://en.wikipedia.org/wiki/List_of_tz_database_time_zones (e.g. <code>Africa/Johannesburg</code>)
 * HoursToForecast - Whole number between 0 and 255. The number of hours ahead to get a weather forecast for
 * MastodonToken - Your Mastodon Access Token
 * MastodonInstanceUrl - The URL of your Mastodon instance (e.g. <code>mastodon.africa</code>)

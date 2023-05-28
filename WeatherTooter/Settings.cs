@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using NodaTime;
 
 namespace WeatherTooter
 {
@@ -18,7 +17,7 @@ namespace WeatherTooter
         public Settings()
         {
             LocationName = string.Empty;
-            IanaTimeZoneName = DateTimeZoneProviders.Tzdb.GetSystemDefault().ToString();
+            IanaTimeZoneName = string.Empty;
             MastodonToken = string.Empty;
             MastodonInstanceUrl = string.Empty;
         }

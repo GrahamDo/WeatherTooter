@@ -2,7 +2,7 @@
 
 This is a console app designed to be run as a bot. It posts a specified location's current and forecast weather data to Mastodon. For an example implementation, see https://mastodon.africa/@EkurhuleniWeather
 
-## Prerequisite
+## Prerequisites
 
 In order to use this bot, you'll need a Mastodon Access Token with permission to <code>write:statuses</code>. You can get one of those by going to Preferences -> Development in your Mastodon account.
 

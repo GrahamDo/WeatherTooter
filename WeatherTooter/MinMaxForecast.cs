@@ -36,7 +36,7 @@ internal class MinMaxForecast
                 result.MaxPrecipitationChance = precipitation;
         }
 
-        if (maximumTemperature < weather.CurrentWeather.Temperature)
+        if (maximumTemperature <= weather.CurrentWeather.Temperature)
         {
             result.MinMaxDescriptor = "minimum";
             result.MinMaxValue = minimumTemperature;

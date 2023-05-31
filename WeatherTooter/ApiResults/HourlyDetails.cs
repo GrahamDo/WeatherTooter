@@ -2,7 +2,7 @@
 
 namespace WeatherTooter.ApiResults;
 
-internal class HourlyDetails
+public class HourlyDetails
 {
     [JsonProperty("temperature_2m")] public float[] Temperatures { get; set; }
     [JsonProperty("apparent_temperature")] public float[] ApparentTemperatures { get; set; }

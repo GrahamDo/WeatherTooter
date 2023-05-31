@@ -2,7 +2,7 @@
 
 namespace WeatherTooter.ApiResults;
 
-internal class ForecastApiResults
+public class ForecastApiResults
 {
     [JsonProperty("current_weather")] public CurrentWeatherDetails CurrentWeather { get; set; }
     public HourlyDetails Hourly { get; set; }

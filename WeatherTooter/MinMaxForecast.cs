@@ -2,11 +2,12 @@
 
 namespace WeatherTooter;
 
-internal class MinMaxForecast
+public class MinMaxForecast
 {
     public string MinMaxDescriptor { get; set; }
     public float MinMaxValue { get; set; }
-    public float MaxPrecipitationChance { get;set; }
+    public float MaxPrecipitationChance { get; set; }
+    public string PrecipitationChanceArticle { get; set; }
 
     public MinMaxForecast()
     {

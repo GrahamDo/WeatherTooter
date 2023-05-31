@@ -3,3 +3,5 @@
 Over the next {TimePeriod}, the forecast is for a {MinMax} of {ForecastTemperature}, with {PrecipitationChanceArticle} {PrecipitationChance} chance of precipitation.
 
 #{LocationNoSpaces} #Weather
+
+* Data provided by @openmeteo@fosstodon.org

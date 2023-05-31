@@ -28,7 +28,11 @@ namespace WeatherTooter.Tests
             var currentDetails = new CurrentWeatherDetails();
             var hourlyDetails = new HourlyDetails
             {
-                PrecipitationProbability = new[] { maxPrecipitationChance }
+                Temperatures = new[] // 48 elements for 48 hours
+                    { 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f },
+
+                PrecipitationProbability = new[]
+                    { 0, 0, 0, 0, 0, 0, 0, 0, 0, maxPrecipitationChance, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
             };
             var apiResult = new ForecastApiResults
             {
@@ -36,7 +40,7 @@ namespace WeatherTooter.Tests
                 Hourly = hourlyDetails
             };
 
-            var forecast = MinMaxForecast.GetFromApiResults(apiResult, 1);
+            var forecast = MinMaxForecast.GetFromApiResults(apiResult, 24);
             Assert.That(forecast.PrecipitationChanceArticle, Is.EqualTo(expected));
         }
     }

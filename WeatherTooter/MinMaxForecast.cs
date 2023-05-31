@@ -48,6 +48,9 @@ public class MinMaxForecast
             result.MinMaxValue = maximumTemperature;
         }
 
+        result.PrecipitationChanceArticle =
+            result.MaxPrecipitationChance is 8 or 11 or 18 or >= 80 and <= 89 ? "an" : "a";
+
         return result;
     }
 }

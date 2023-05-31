@@ -13,6 +13,7 @@ public class MinMaxForecast
     {
         MinMaxDescriptor = string.Empty;
         MaxPrecipitationChance = 0;
+        PrecipitationChanceArticle = string.Empty;
     }
 
     public static MinMaxForecast GetFromApiResults(ForecastApiResults weather, byte hoursToForecast)

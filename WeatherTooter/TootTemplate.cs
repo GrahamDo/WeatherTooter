@@ -7,7 +7,7 @@ internal class TootTemplate
     public string GetTootText(string currentConditions, string locationName, 
         float currentTemperatureCelsius, float apparentTemperatureCelsius, 
         byte hoursToForecast, string minimumOrMaximum, float forecastTemperatureCelsius, 
-        float precipitationChance)
+        string precipitationChanceArticle, float precipitationChance)
     {
         var temperatureText = $"{currentTemperatureCelsius:#0}°C";
         var apparentTemperatureText = $"{apparentTemperatureCelsius:#0}°C";
@@ -25,6 +25,7 @@ internal class TootTemplate
             .Replace("{MinMax}", minimumOrMaximum)
             .Replace("{ForecastTemperature}", forecastTemperatureText)
             .Replace("{PrecipitationChance}", precipitationChanceText)
+            .Replace("{PrecipitationChanceArticle}", precipitationChanceArticle)
             .Replace("{LocationNoSpaces}", locationNameNoSpaces);
     }
 

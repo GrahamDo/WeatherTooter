@@ -23,7 +23,9 @@
                 var template = new TootTemplate();
                 var tootText = template.GetTootText(conditions, settings.LocationName,
                     weather.CurrentWeather.Temperature, apparentTemperature, settings.HoursToForecast,
-                    forecast.MinMaxDescriptor, forecast.MinMaxValue, forecast.MaxPrecipitationChance);
+                    forecast.MinMaxDescriptor, 
+                    forecast.MinMaxValue, forecast.PrecipitationChanceArticle,
+                    forecast.MaxPrecipitationChance);
 
                 if (args.Length == 1 && args[0].ToLower() == "--fake")
                 {

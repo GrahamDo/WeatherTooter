@@ -23,6 +23,7 @@ Then open a terminal and run the following for each setting to configure everyth
 * HoursToForecast - Whole number between 0 and 255. The number of hours ahead to get a weather forecast for
 * MastodonToken - Your Mastodon Access Token
 * MastodonInstanceUrl - The URL of your Mastodon instance (e.g. <code>mastodon.africa</code>)
+* TemplateFile - The name of the file to use as a template (default: <code>toot-template.txt</code>)
 
 ### Running
 

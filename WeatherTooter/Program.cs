@@ -7,9 +7,15 @@
             try
             {
                 var settings = Settings.Load();
-                if (args.Length == 3 && args[0].ToLower() == "--set")
+                var setPosition = GetArgumentPosition("--set", args);
+                if (setPosition > -1)
                 {
-                    settings.SetValueFromArguments(args[1], args[2]);
+                    var settingPosition = setPosition + 1;
+                    var valuePosition = setPosition + 2;
+                    if (args.Length < valuePosition + 1)
+                        throw new ApplicationException("Invalid arguments for --set");
+
+                    settings.SetValueFromArguments(args[settingPosition], args[valuePosition]);
                     settings.Save();
                     return;
                 }
@@ -27,7 +33,8 @@
                     forecast.MinMaxValue, forecast.PrecipitationChanceArticle,
                     forecast.MaxPrecipitationChance);
 
-                if (args.Length == 1 && args[0].ToLower() == "--fake")
+                var fakePosition = GetArgumentPosition("--fake", args);
+                if (fakePosition > -1)
                 {
                     Console.WriteLine("Not posting to Mastodon. --fake detected.");
                     Console.WriteLine("The following WOULD be posted:");
@@ -44,6 +51,15 @@
             {
                 Console.WriteLine(ex.Message);
             }
+        }
+
+        private static int GetArgumentPosition(string argument, string[] args)
+        {
+            for (var i = 0; i < args.Length; i++)
+                if (args[i].ToLower() == argument.ToLower())
+                    return i;
+
+            return -1;
         }
     }
 }

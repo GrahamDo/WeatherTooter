@@ -6,7 +6,9 @@
         {
             try
             {
-                var settings = Settings.Load();
+                var settingsFileName = GetSettingsFileNameFromArgs(args);
+                var settings = Settings.Load(settingsFileName);
+
                 var setPosition = GetArgumentPosition("--set", args);
                 if (setPosition > -1)
                 {
@@ -51,6 +53,19 @@
             {
                 Console.WriteLine(ex.Message);
             }
+        }
+
+        private static string GetSettingsFileNameFromArgs(string[] args)
+        {
+            var argumentPosition = GetArgumentPosition("--settingsFile", args);
+            if (argumentPosition == -1)
+                return "settings.json";
+
+            var valuePosition = argumentPosition + 1;
+            if (args.Length < valuePosition + 1)
+                throw new ApplicationException("Invalid arguments for --settingsFile");
+
+            return args[valuePosition];
         }
 
         private static int GetArgumentPosition(string argument, string[] args)

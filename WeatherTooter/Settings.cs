@@ -4,7 +4,7 @@ namespace WeatherTooter
 {
     internal class Settings
     {
-        private const string SettingsFileName = "settings.json";
+        private readonly string _settingsFileName = "settings.json";
         
         public float LocationLatitude { get; set; }
         public float LocationLongitude { get; set; }
@@ -15,8 +15,10 @@ namespace WeatherTooter
         public string MastodonInstanceUrl { get; set; }
         public string TemplateFile { get; set; }
 
-        public Settings()
+        public Settings(string settingsFileName)
         {
+            _settingsFileName = settingsFileName;
+
             LocationLatitude = float.MinValue;
             LocationLongitude = float.MinValue;
             LocationName = string.Empty;
@@ -26,20 +28,20 @@ namespace WeatherTooter
             TemplateFile = "toot-template.txt";
         }
 
-        public static Settings Load()
+        public static Settings Load(string fileName)
         {
-            if (!File.Exists(SettingsFileName))
-                return new Settings();
+            if (!File.Exists(fileName))
+                return new Settings(fileName);
 
-            var text = File.ReadAllText(SettingsFileName);
+            var text = File.ReadAllText(fileName);
             return JsonConvert.DeserializeObject<Settings>(text) ??
-                   throw new ApplicationException($"Your '{SettingsFileName}' appears to be empty or corrupt.");
+                   throw new ApplicationException($"Your '{fileName}' appears to be empty or corrupt.");
         }
 
         public void Save()
         {
             var serialised = JsonConvert.SerializeObject(this, Formatting.Indented);
-            File.WriteAllText(SettingsFileName, serialised);
+            File.WriteAllText(_settingsFileName, serialised);
         }
 
         public void SetValueFromArguments(string setting, string value)

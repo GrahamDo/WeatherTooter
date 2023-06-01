@@ -36,3 +36,19 @@ This will connect to the Weather API and print what it would toot to the console
 Once you're happy, run <code>WeatherTooter</code> without any arguments.
 
 Then create a cron job or Windows Scheduled Task to do that as often as you like, and you're good to go! :-)
+
+### Advanced: Custom Settings File
+
+By default, WeatherTooter reads from and writes to a file called <code>settings.json</code> in the startup directory. You can change this by including the argument <code>--settingsFile &lt;FileName&gt;</code> when running the program. For example:
+
+<code>WeatherTooter --set LocationName Johannesburg --settingsFile johannesburg-settings</code>
+
+This allows you to have multiple profiles, so that you can run multiple weather bots at the same time.
+
+In the above example, once you've configured all the settings for Johannesburg, you can run:
+
+<code>WeatherTooter --fake --settingsFile johannesburg-settings</code>
+
+to verify that it meets your expectations. When you're ready to run it "for real", just execute:
+
+<code>WeatherTooter --settingsFile johannesburg-settings</code>

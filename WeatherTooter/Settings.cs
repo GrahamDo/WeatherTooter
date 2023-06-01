@@ -13,6 +13,7 @@ namespace WeatherTooter
         public byte HoursToForecast { get; set; }
         public string MastodonToken { get; set; }
         public string MastodonInstanceUrl { get; set; }
+        public string TemplateFile { get; set; }
 
         public Settings()
         {
@@ -22,6 +23,7 @@ namespace WeatherTooter
             IanaTimeZoneName = string.Empty;
             MastodonToken = string.Empty;
             MastodonInstanceUrl = string.Empty;
+            TemplateFile = "toot-template.txt";
         }
 
         public static Settings Load()
@@ -67,6 +69,9 @@ namespace WeatherTooter
                         break;
                     case "mastodoninstanceurl":
                         MastodonInstanceUrl = value;
+                        break;
+                    case "templatefile":
+                        TemplateFile = value;
                         break;
                     default:
                         throw new ApplicationException($"Invalid setting: {setting}");

@@ -2,7 +2,12 @@
 
 internal class TootTemplate
 {
-    private const string TemplateFileName = "toot-template.txt";
+    private readonly string _templateFileName;
+
+    public TootTemplate(string templateFileName)
+    {
+        _templateFileName = templateFileName;
+    }
 
     public string GetTootText(string currentConditions, string locationName, 
         float currentTemperatureCelsius, float apparentTemperatureCelsius, 
@@ -29,13 +34,12 @@ internal class TootTemplate
             .Replace("{LocationNoSpaces}", locationNameNoSpaces);
     }
 
-    private static string Load()
+    private string Load()
     {
-        if (!File.Exists(TemplateFileName))
-            throw new ApplicationException($"{TemplateFileName} not found");
+        if (!File.Exists(_templateFileName))
+            throw new ApplicationException($"{_templateFileName} not found");
 
-        var text = File.ReadAllText(TemplateFileName);
+        var text = File.ReadAllText(_templateFileName);
         return text;
     }
-
 }

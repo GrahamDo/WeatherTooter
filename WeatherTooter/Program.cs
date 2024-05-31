@@ -55,22 +55,22 @@
             }
         }
 
-        private static string GetSettingsFileNameFromArgs(string[] args)
+        private static string GetSettingsFileNameFromArgs(IReadOnlyList<string> args)
         {
             var argumentPosition = GetArgumentPosition("--settingsFile", args);
             if (argumentPosition == -1)
                 return "settings.json";
 
             var valuePosition = argumentPosition + 1;
-            if (args.Length < valuePosition + 1)
+            if (args.Count < valuePosition + 1)
                 throw new ApplicationException("Invalid arguments for --settingsFile");
 
             return args[valuePosition];
         }
 
-        private static int GetArgumentPosition(string argument, string[] args)
+        private static int GetArgumentPosition(string argument, IReadOnlyList<string> args)
         {
-            for (var i = 0; i < args.Length; i++)
+            for (var i = 0; i < args.Count; i++)
                 if (args[i].ToLower() == argument.ToLower())
                     return i;
 

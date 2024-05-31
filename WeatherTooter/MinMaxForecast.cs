@@ -4,17 +4,10 @@ namespace WeatherTooter;
 
 public class MinMaxForecast
 {
-    public string MinMaxDescriptor { get; set; }
+    public string MinMaxDescriptor { get; set; } = string.Empty;
     public float MinMaxValue { get; set; }
     public float MaxPrecipitationChance { get; set; }
-    public string PrecipitationChanceArticle { get; set; }
-
-    public MinMaxForecast()
-    {
-        MinMaxDescriptor = string.Empty;
-        MaxPrecipitationChance = 0;
-        PrecipitationChanceArticle = string.Empty;
-    }
+    public string PrecipitationChanceArticle { get; set; } = string.Empty;
 
     public static MinMaxForecast GetFromApiResults(ForecastApiResults weather, byte hoursToForecast)
     {

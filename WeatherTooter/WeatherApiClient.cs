@@ -36,7 +36,7 @@ namespace WeatherTooter
             try
             {
                 var response = await restClient.GetAsync(request);
-                if (response?.Content == null)
+                if (response.Content == null)
                     throw new ApplicationException("Empty response from Weather API Client");
 
                 var results = JsonConvert.DeserializeObject<ForecastApiResults>(response.Content);

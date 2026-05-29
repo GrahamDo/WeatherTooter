@@ -1,5 +1,6 @@
 ﻿using WeatherTooter.ApiResults;
-
+// ReSharper disable MemberCanBePrivate.Global
+// All properties need public getters and setters for serialisation to work
 namespace WeatherTooter;
 
 public class MinMaxForecast

@@ -1,5 +1,6 @@
 ﻿namespace WeatherTooter
 {
+    // ReSharper disable once ClassNeverInstantiated.Global
     internal class Program
     {
         private static async Task Main(string[] args)

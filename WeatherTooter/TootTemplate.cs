@@ -1,14 +1,7 @@
 ﻿namespace WeatherTooter;
 
-internal class TootTemplate
+internal class TootTemplate(string templateFileName)
 {
-    private readonly string _templateFileName;
-
-    public TootTemplate(string templateFileName)
-    {
-        _templateFileName = templateFileName;
-    }
-
     public string GetTootText(string currentConditions, string locationName, 
         float currentTemperatureCelsius, float apparentTemperatureCelsius, 
         byte hoursToForecast, string minimumOrMaximum, float forecastTemperatureCelsius, 
@@ -36,10 +29,10 @@ internal class TootTemplate
 
     private string Load()
     {
-        if (!File.Exists(_templateFileName))
-            throw new ApplicationException($"{_templateFileName} not found");
+        if (!File.Exists(templateFileName))
+            throw new ApplicationException($"{templateFileName} not found");
 
-        var text = File.ReadAllText(_templateFileName);
+        var text = File.ReadAllText(templateFileName);
         return text;
     }
 }

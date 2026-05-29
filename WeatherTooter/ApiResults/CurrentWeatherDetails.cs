@@ -1,6 +1,8 @@
-﻿using System.Runtime.CompilerServices;
-using System.Text;
+﻿using System.Text;
 using Newtonsoft.Json;
+// ReSharper disable UnusedAutoPropertyAccessor.Global
+// ReSharper disable PropertyCanBeMadeInitOnly.Global
+// All properties need public getters and setters for serialisation to work
 
 namespace WeatherTooter.ApiResults;
 

@@ -1,4 +1,6 @@
 ﻿using Newtonsoft.Json;
+// ReSharper disable PropertyCanBeMadeInitOnly.Global
+// All properties need public getters and setters for serialisation to work
 
 namespace WeatherTooter.ApiResults;
 

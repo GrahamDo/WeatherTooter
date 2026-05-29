@@ -1,10 +1,12 @@
 ﻿using Newtonsoft.Json;
+// ReSharper disable MemberCanBePrivate.Global
+// All properties need public getters and setters for serialisation to work
 
 namespace WeatherTooter
 {
     internal class Settings
     {
-        private readonly string _settingsFileName = "settings.json";
+        private readonly string _settingsFileName;
         
         public float LocationLatitude { get; set; }
         public float LocationLongitude { get; set; }
@@ -55,7 +57,6 @@ namespace WeatherTooter
                         break;
                     case "locationlongitude":
                         LocationLongitude = float.Parse(value);
-                        ;
                         break;
                     case "locationname":
                         LocationName = value;

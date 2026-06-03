@@ -8,8 +8,8 @@ namespace WeatherTooter.ApiResults;
 
 public class CurrentWeatherDetails
 {
-    public float Temperature { get; set; }
-    public byte WeatherCode { get; set; }
+    [JsonProperty("temperature")] public float Temperature { get; set; }
+    [JsonProperty("weather_code")] public byte WeatherCode { get; set; }
     [JsonProperty("time")] public DateTime LocalTime { get; set; }
 
     public string GetCurrentConditions()

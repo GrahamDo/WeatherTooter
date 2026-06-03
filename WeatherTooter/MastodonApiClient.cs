@@ -1,27 +1,11 @@
-﻿using RestSharp.Authenticators.OAuth2;
-using RestSharp;
-using System.Text;
+﻿using System.Text;
+using Newtonsoft.Json;
 
 namespace WeatherTooter;
 
-internal class MastodonApiClient
+internal class MastodonApiClient(HttpClientFactory clientFactory)
 {
-    private RestClient _restClient = null!;
-
-    private void InitialiseClient(string instanceUrl, string token)
-    {
-        if (string.IsNullOrEmpty(instanceUrl))
-            throw new ApplicationException("Missing Mastodon instance URL");
-        if (string.IsNullOrEmpty(token))
-            throw new ApplicationException("Missing Mastodon token");
-
-        var baseUrl = BuildBaseUrl(instanceUrl);
-        var options = new RestClientOptions(baseUrl)
-        {
-            Authenticator = new OAuth2AuthorizationRequestHeaderAuthenticator(token, "Bearer")
-        };
-        _restClient = new RestClient(options);
-    }
+    private readonly HttpClient _client = clientFactory.GetClient();
 
     private static string BuildBaseUrl(string instanceUrl)
     {
@@ -31,29 +15,33 @@ internal class MastodonApiClient
         baseUrlSb.Append(instanceUrl);
         if (!instanceUrl.EndsWith("/"))
             baseUrlSb.Append("/");
-        baseUrlSb.Append("api/v1/");
+        baseUrlSb.Append("api/v1/statuses");
         return baseUrlSb.ToString();
     }
 
-
     public async Task Post(string instanceUrl, string token, string text)
     {
-        InitialiseClient(instanceUrl, token);
         var status = new MastodonStatus
         {
             Status = text
         };
-        var request = new RestRequest("statuses", Method.Post).AddJsonBody(status);
-        try
+        
+        var json = JsonConvert.SerializeObject(status);
+        var content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+        var url = BuildBaseUrl(instanceUrl);
+        var request = new HttpRequestMessage(HttpMethod.Post, url)
         {
-            await _restClient.PostAsync(request);
-        }
-        catch (HttpRequestException ex)
+            Content = content,
+            Headers = { Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token) }
+        };
+
+        using var response = await _client.SendAsync(request);        
+        if (!response.IsSuccessStatusCode)
         {
-            if (ex.Message.Contains("Forbidden"))
+            if (response.StatusCode == System.Net.HttpStatusCode.Forbidden)
                 throw new ApplicationException("Invalid Mastodon token");
 
-            throw;
+            throw new HttpRequestException($"Request failed with status code {response.StatusCode}");
         }
     }
 }

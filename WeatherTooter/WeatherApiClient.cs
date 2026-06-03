@@ -1,13 +1,14 @@
 ﻿using System.Globalization;
 using System.Net;
 using Newtonsoft.Json;
-using RestSharp;
 using WeatherTooter.ApiResults;
 
 namespace WeatherTooter
 {
-    internal class WeatherApiClient
+    internal class WeatherApiClient(HttpClientFactory clientFactory)
     {
+        private readonly HttpClient _client = clientFactory.GetClient();
+        
         public async Task<ForecastApiResults> GetForecast(DateTime today, float locationLatitude,
             float locationLongitude, string ianaTimeZoneName)
         {
@@ -19,10 +20,9 @@ namespace WeatherTooter
                 throw new ApplicationException("Missing time zone name");
 
             var tomorrow = today.AddDays(1);
-            var restClient = new RestClient("https://api.open-meteo.com/");
             var cultureInvariantLongitude = locationLongitude.ToString("#0.00", CultureInfo.InvariantCulture);
             var cultureInvariantLatitude = locationLatitude.ToString("#0.00", CultureInfo.InvariantCulture);
-            var queryString = $"v1/forecast?" +
+            var url = $"https://api.open-meteo.com/v1/forecast?" +
                               $"latitude={cultureInvariantLatitude}&" +
                               $"longitude={cultureInvariantLongitude}&" +
                               "current_weather=true&" +
@@ -31,15 +31,11 @@ namespace WeatherTooter
                               $"end_date={tomorrow:yyyy-MM-dd}&" +
                               "hourly=temperature_2m,apparent_temperature," +
                               "precipitation_probability";
-
-            var request = new RestRequest(queryString);
+            
             try
             {
-                var response = await restClient.GetAsync(request);
-                if (response.Content == null)
-                    throw new ApplicationException("Empty response from Weather API Client");
-
-                var results = JsonConvert.DeserializeObject<ForecastApiResults>(response.Content);
+                var response = await _client.GetStringAsync(url);
+                var results = JsonConvert.DeserializeObject<ForecastApiResults>(response);
                 if (results == null)
                     throw new ApplicationException("Can't deserialise Weather Content");
 

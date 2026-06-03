@@ -23,7 +23,8 @@
                     return;
                 }
 
-                var weatherClient = new WeatherApiClient();
+                var httpClientFactory = new HttpClientFactory();
+                var weatherClient = new WeatherApiClient(httpClientFactory);
                 var weather = await weatherClient.GetForecast(DateTime.Now.Date, settings.LocationLatitude,
                     settings.LocationLongitude, settings.IanaTimeZoneName);
                 var conditions = weather.CurrentWeather.GetCurrentConditions();
@@ -46,7 +47,7 @@
                 }
                 else
                 {
-                    var mastodon = new MastodonApiClient();
+                    var mastodon = new MastodonApiClient(httpClientFactory);
                     await mastodon.Post(settings.MastodonInstanceUrl, settings.MastodonToken, tootText);
                 }
             }
